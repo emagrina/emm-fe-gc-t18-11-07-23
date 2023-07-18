@@ -8,7 +8,7 @@ import { CharacterModel } from '@modules/characters/models/character.model';
 })
 export class CardCharacterComponent {
   @Input() character!: CharacterModel;
-  characterImageUrl = '../../../../../assets/img/def-img.jpeg';
+  characterImageUrl = './assets/img/def-img.jpeg';
   isLoadingImage = true;
 
   /**

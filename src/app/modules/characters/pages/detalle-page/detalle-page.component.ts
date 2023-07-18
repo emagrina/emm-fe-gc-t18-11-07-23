@@ -13,7 +13,7 @@ export class DetallePageComponent implements OnInit {
   character!: CharacterModel;
   isModalOpen = false;
 
-  characterImageUrl = '../../../../../assets/img/def-img.jpeg';
+  characterImageUrl = './assets/img/def-img.jpeg';
   isLoadingImage = true;
 
   constructor(
