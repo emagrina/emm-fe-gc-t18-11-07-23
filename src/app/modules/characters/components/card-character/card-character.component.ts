@@ -8,7 +8,7 @@ import { CharacterModel } from '@modules/characters/models/character.model';
 })
 export class CardCharacterComponent {
   @Input() character!: CharacterModel;
-  characterImageUrl = './assets/img/def-img.jpeg';
+  characterImageUrl = 'https://github.com/emagrina/emm-fe-gc-t18-11-07-23/blob/main/src/assets/img/def-img.jpeg?raw=true';
   isLoadingImage = true;
 
   /**
