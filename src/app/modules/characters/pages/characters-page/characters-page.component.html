@@ -1,4 +1,4 @@
-<app-nav-bar/>
+<app-nav-bar />
 
 <div class="container col-xxl-10 px-4 py-5 d-flex vh-100 w-100">
   <div class="row g-8 py-5 mt-1">
@@ -11,4 +11,27 @@
       </div>
     </div>
   </div>
+  <img
+    class="img-info-character"
+    src="{{ imageUrl }}"
+    alt="Image help new character"
+  />
 </div>
+<button
+  type="button"
+  class="btn btn-success btn-floating btn-lg"
+  id="btn-botoom-right"
+  data-bs-toggle="modal"
+  data-bs-target="#createEditCharacterModal"
+  (click)="openModal()"
+>
+  +
+</button>
+
+<app-modal-layout
+  [modalTitle]="'Create Character'"
+  [isModalOpen]="isModalOpen"
+  (modalClosed)="closeModal()"
+>
+  <app-create-edit-form [isEditMode]="false"/>
+</app-modal-layout>

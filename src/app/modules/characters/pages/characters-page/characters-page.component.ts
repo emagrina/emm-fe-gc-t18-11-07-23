@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CharactersService } from '../../services/characters-service/characters.service';
+import { CharacterService } from '../../services/character.service';
 
 @Component({
   selector: 'app-characters-page',
@@ -8,24 +8,35 @@ import { CharactersService } from '../../services/characters-service/characters.
 })
 export class CharactersPageComponent implements OnInit {
   characters: any[] = [];
-  sortOrder: string = '';
+  imageUrl: string;
+  isModalOpen = false;
 
-  constructor(private charactersService: CharactersService) {}
+  constructor(private characterService: CharacterService) {
+    this.imageUrl = '../../../../assets/img/img-inf-new-character.png';
+  }
 
   ngOnInit() {
     this.getCharacters();
   }
 
   getCharacters() {
-    this.charactersService.getCharacters()
+    this.characterService.getCharacters()
       .subscribe(
         (response) => {
           this.characters = response;
         },
         (error) => {
-          console.log('Error:', error);
+          console.error('Error:', error);
         }
       );
   }
-  
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+    this.getCharacters();
+  }
 }

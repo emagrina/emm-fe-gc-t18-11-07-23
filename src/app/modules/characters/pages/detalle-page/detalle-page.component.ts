@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { DetalleService } from '../../services/detalle-service/detalle.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CharacterService } from '../../services/character.service';
+import { CharacterModel } from '@modules/characters/models/character.model';
 
 @Component({
   selector: 'app-detalle-page',
@@ -8,10 +9,19 @@ import { DetalleService } from '../../services/detalle-service/detalle.service';
   styleUrls: ['./detalle-page.component.css'],
 })
 export class DetallePageComponent implements OnInit {
-  characterId: string = '';
-  character: any;
+  characterId: number | null = null;
+  character!: CharacterModel;
+  isModalOpen = false;
 
-  constructor(private route: ActivatedRoute, private detalleService: DetalleService) {}
+  characterImageUrl = '../../../../../assets/img/def-img.jpeg';
+  isLoadingImage = true;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private characterService: CharacterService,
+  ) {
+  }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -21,15 +31,49 @@ export class DetallePageComponent implements OnInit {
     });
   }
 
-  getCharacter(id: string) {
-    this.detalleService.getCharacter(id)
-      .subscribe(
-        (response) => {
-          this.character = response;
-        },
-        (error) => {
-          console.log('Error:', error);
-        }
-      );
+  getCharacter(id: number | null) {
+    this.characterService.getCharacter(id).subscribe(
+      (response) => {
+        this.character = response;
+      },
+      (error) => {
+        console.log('Error:', error);
+      },
+    );
+  }
+
+  /**
+   * Validacion de la imagen para saber si esta rota o no y si cargar una imagen por defecto
+   */
+  onImageLoad() {
+    this.isLoadingImage = false;
+  }
+
+  ngOnChanges() {
+    this.isLoadingImage = true;
+  }
+
+  /**
+   * Borarremos un character
+   */
+  deleteCharacter(characterId: number | null) {
+    this.characterService.deleteCharacter(characterId).subscribe(
+      () => {
+        this.router.navigate(['/characters']);
+      },
+      (error) => {
+        console.error('Error deleting character:', error);
+      },
+    );
+  }
+
+  // Gestionamos el Modal
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+    this.getCharacter(this.characterId);
   }
 }

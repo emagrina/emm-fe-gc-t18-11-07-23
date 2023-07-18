@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CharacterModel } from '@modules/characters/models/character.model';
 
 @Component({
   selector: 'app-card-character',
@@ -6,11 +7,19 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./card-character.component.css'],
 })
 export class CardCharacterComponent {
-  @Input() character: any;
+  @Input() character!: CharacterModel;
+  characterImageUrl = '../../../../../assets/img/def-img.jpeg';
+  isLoadingImage = true;
 
-  isImageLoaded: boolean = false;
+  /**
+   * Validacion de la imagen para saber si esta rota o no y si cargar una imagen por defecto
+   */
 
-  handleImageLoad() {
-    this.isImageLoaded = true;
+  onImageLoad() {
+    this.isLoadingImage = false;
+  }
+
+  ngOnChanges() {
+    this.isLoadingImage = true;
   }
 }
