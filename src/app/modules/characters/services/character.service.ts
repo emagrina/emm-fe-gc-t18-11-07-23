@@ -38,7 +38,7 @@ export class CharacterService {
    */
   createCharacter(characterData: CharacterModel): Observable<CharacterModel> {
     return this.http.post<CharacterModel>(
-      `${this.apiUrl}/characters/${characterData.id}`,
+      `${this.apiUrl}/characters`,
       characterData
     );
   }

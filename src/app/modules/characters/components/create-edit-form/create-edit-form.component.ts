@@ -72,6 +72,7 @@ export class CreateEditFormComponent implements OnInit {
         );
       } else {
         this.characterService.createCharacter(characterData).subscribe(
+
           (response) => {
             this.characterForm.reset();
           },
