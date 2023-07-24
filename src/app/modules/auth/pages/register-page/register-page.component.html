@@ -3,21 +3,14 @@
   <div class="col-md-9 col-lg-8 mx-auto">
     <h3 class="login-heading mb-4">Sign in</h3>
 
-    <form>
-      <div class="form-floating mb-3">
-        <input
-          type="text"
-          class="form-control"
-          id="floatingInput"
-        />
-        <label for="floatingInput">Username</label>
-      </div>
+    <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
       <div class="form-floating mb-3">
         <input
           type="email"
           class="form-control"
           id="floatingInput"
           placeholder="name@example.com"
+          formArrayName="email"
         />
         <label for="floatingInput">Email address</label>
       </div>
@@ -37,6 +30,7 @@
           type="checkbox"
           value=""
           id="rememberPasswordCheck"
+          formControlName="password"
         />
         <label class="form-check-label" for="rememberPasswordCheck">
           Remember password

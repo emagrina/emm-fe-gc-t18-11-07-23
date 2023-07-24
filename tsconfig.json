@@ -22,7 +22,7 @@
     "paths": {
       "@core/*": ["src/app/core/*"],
       "@modules/*": ["src/app/modules/*"],
-      "@shared/*": ["src/app/shared/*"],
+      "@utils/*": ["src/app/utils/*"],
       "@data/*": ["src/app/data/*"],
       "@environments/*": ["src/environments/*"]
     },

@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { AuthModule } from '@modules/auth/auth.module';
-import { HomeModule } from '@modules/home/home.module';
-import { CharactersModule } from '@modules/characters/characters.module';
-import { AboutModule } from '@modules/about/about.module';
+import { ModulesModule } from '@modules/modules.module';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -15,10 +14,9 @@ import { AboutModule } from '@modules/about/about.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HomeModule,
-    AuthModule,
-    CharactersModule,
-    AboutModule
+    ModulesModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
   ],
   providers: [],
   bootstrap: [AppComponent]

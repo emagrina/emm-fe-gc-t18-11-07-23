@@ -1,2 +1,2 @@
-export * from './characters-page/characters-page.component'
-export * from './detalle-page/detalle-page.component'
+export * from './characters-page';
+export * from './detalle-page';
