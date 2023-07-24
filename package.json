@@ -1,5 +1,5 @@
 {
-  "name": "emm-fe-gc-t19-17-07-23",
+  "name": "emm-fe-gc-t18-11-07-23",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -14,14 +14,12 @@
     "@angular/common": "^16.1.0",
     "@angular/compiler": "^16.1.0",
     "@angular/core": "^16.1.0",
-    "@angular/fire": "^7.6.1",
     "@angular/forms": "^16.1.0",
     "@angular/platform-browser": "^16.1.0",
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.0",
-    "firebase": "^9.23.0",
     "jquery": "^3.7.0",
     "lodash": "^4.17.21",
     "rxjs": "~7.8.0",

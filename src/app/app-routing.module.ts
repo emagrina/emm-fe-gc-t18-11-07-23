@@ -1,47 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
-import {
-  HomePageComponent,
-  CharactersPageComponent,
-  DetallePageComponent,
-  AboutPageComponent,
-  LoginPageComponent,
-  RegisterPageComponent,
-} from './modules';
+import { AboutPageComponent } from '@modules/about/pages/about-page/about-page.component';
 
 const routes: Routes = [
-  { path: 'auth/login', component: LoginPageComponent },
-  { path: 'auth/register', component: RegisterPageComponent },
+  { path: '', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
+  { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
   { path: 'login', redirectTo: 'auth/login', pathMatch: 'full' },
   { path: 'register', redirectTo: 'auth/register', pathMatch: 'full' },
-
-  {
-    path: '',
-    component: HomePageComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
-  },
-  {
-    path: 'characters',
-    component: CharactersPageComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
-  },
-  {
-    path: 'characters/:id',
-    component: DetallePageComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
-  },
-  {
-    path: 'about',
-    component: AboutPageComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
-  },
+  { path: 'characters', loadChildren: () => import('./modules/characters/characters.module').then(m => m.CharactersModule) },
+  { path: 'about', component: AboutPageComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
